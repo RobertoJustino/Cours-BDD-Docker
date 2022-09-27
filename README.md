@@ -14,7 +14,7 @@
   et de manière générale, toute composition des possibilités précédentes (un tableau d’agrégats de
 paires clé-valeur par exemple) est un document.  
 
-  Notions essentielles
+#### Notions essentielles
 * Les données sont auto-décrites. Le contenu vient avec sa propre description.
 * Structures riches. Le contenu se décrit avec des listes, des enregistrements imbriqués,
 des ensembles.
@@ -42,6 +42,33 @@ La sérialisation désigne la capacité à coder un document sous la forme d’u
 * Langage pour l’échange de données semi-structurées (et éventuellement structurées) ;
 * Format texte indépendant du language de programmation utilisé pour le manipuler.  
   Utilisation première : échange de données dans un environnement Web  
-  Extension : sérialisation et stockage de données
+  Extension : sérialisation et stockage de données  
 
+
+  Générateur de documents JSON volumineux : https://github.com/10gen-labs/ipsum
+
+  Commande pour créer une base de données JSON à l'aide d'un schéma : python ./pygenipsum.py --count 1000000 schema.jsch > bd.json
+
+#### Représentation relationnel vs Représentation arborescente (XML, JSON)
+
+  http://b3d.bdpedia.fr/files/slmodelisation.pdf  
+
+  En résumé, les caractéristiques d’une modélisation relationnelle sont
+* Un objectif de normalisation qui vise à éviter à la fois toute redondance et toute perte d’information ;  
+  la redondance est évitée en découpant les données avec une granularité fine, et en les stockant
+indépendamment les unes des autres ;  
+  la perte d’information est évitée en utilisant un système de référencement basé sur les clés pri-
+maires et clés étrangères.
+* Les données sont contraintes par un schéma qui impose des règles sur le contenu de la base  
+
+  L’apport principal de la normalisation relationnelle est d'eviter les redondances sans perdre d’information.  
+  La principale conséquence de la normalisation? L’information relative à chaque entité est fragmentée dans plusieurs tables.  
+  Les schémas relationnels garantissent la régularité des représentations et le respect des contraintes.  
+  La modélisation par documents structurés évite la fragmentation des informations relative à une même entité.  
+  On peut modéliser certaines bases de données dans un modèle et pas dans l’autre, et réciproquement.  
+  L’impact du choix de modélisation sur les applications? Les bases documentaires imposent plus de complexité aux applications à cause de l’absence de norme et de schéma.  
+
+### Cassandra
+
+docker run --name mon-cassandra -p 3000:9042  -d cassandra:latest
 
