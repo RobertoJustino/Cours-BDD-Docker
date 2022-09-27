@@ -80,4 +80,31 @@ docker run --name mon-cassandra -p 3000:9042  -d cassandra:latest
   cqlsh > DESCRIBE keyspaces;  
   cqlsh > DESCRIBE KEYSPACE Movies;  
 
+  La syntaxe SQL est aussi possible.  
+
+  Create table :  
+
+  create table artists (id text,
+  last_name text, first_name text,
+  birth_date int, primary key (id)
+  );  
+
+  Insertion de données :  
+
+  insert into artists (id, last_name, first_name, birth_date)
+  values ('artist1', 'Depardieu', 'Gérard', 1948);
+  insert into artists (id, last_name, first_name, birth_date)
+  values ('artist2', 'Baye', 'Nathalie', 1948);
+  insert into artists (id, last_name, first_name)
+  values ('artist3', 'Marceau', 'Sophie');
+
+  Affichage  
+  
+  select * from artists;
+
+
+### Mongo
+
+  docker run –name mon-mongo -p 30001 :27017 -d mongo
+
 
