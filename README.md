@@ -70,5 +70,14 @@ maires et clés étrangères.
 
 ### Cassandra
 
-docker run --name mon-cassandra -p 3000:9042  -d cassandra:latest
+docker run --name mon-cassandra -p 3000:9042  -d cassandra:latest  
+  
+  Création d'une base de données (keyspace dans Cassandra) :    
+  CREATE KEYSPACE IF NOT EXISTS Movies
+  WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor': 3 };
+
+  Avec CQLSH :  
+  cqlsh > DESCRIBE keyspaces;  
+  cqlsh > DESCRIBE KEYSPACE Movies;  
+
 
