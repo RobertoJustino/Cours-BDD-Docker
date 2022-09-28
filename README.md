@@ -4,7 +4,7 @@
 
 ### Documents Structurés : XML, JSON (http://b3d.bdpedia.fr/files/sldocstruct.pdf)
 
-  Qu'est ce qu'un document ?
+  #### Qu'est ce qu'un document ?
 
 * une valeur atomique (un entier, une chaîne de caractères); 
 * une paire clé-valeur; 
@@ -14,7 +14,7 @@
   et de manière générale, toute composition des possibilités précédentes (un tableau d’agrégats de
 paires clé-valeur par exemple) est un document.  
 
-#### Notions essentielles
+  #### Notions essentielles
 * Les données sont auto-décrites. Le contenu vient avec sa propre description.
 * Structures riches. Le contenu se décrit avec des listes, des enregistrements imbriqués,
 des ensembles.
@@ -30,12 +30,12 @@ constructeurs élémentaires).
   Modélisation arborescente : arbre dans lequel les étiquettes sont sur les arêtes et les valeurs sur les feuilles.  
   On peut aussi représenter la structure et les valeurs comme des noeuds (XML)
 
-#### Sérialisation des documents structurés 
+  #### Sérialisation des documents structurés 
 
 La sérialisation désigne la capacité à coder un document sous la forme d’une séquence d’octets qui peut
 « voyager » sans dégradation sur le réseau, une propriété essentielle dans le cadre d’un système distribué.
 
-#### JSON 
+  #### JSON 
 
 * Javascript Object Notation
 * Initialement créé pour la sérialisation et l’échange d’objets JavaScript ;
@@ -49,7 +49,7 @@ La sérialisation désigne la capacité à coder un document sous la forme d’u
 
   Commande pour créer une base de données JSON à l'aide d'un schéma : python ./pygenipsum.py --count 1000000 schema.jsch > bd.json
 
-#### Représentation relationnel vs Représentation arborescente (XML, JSON)
+  #### Représentation relationnel vs Représentation arborescente (XML, JSON)
 
   http://b3d.bdpedia.fr/files/slmodelisation.pdf  
 
@@ -72,24 +72,24 @@ maires et clés étrangères.
 
 docker run --name mon-cassandra -p 3000:9042  -d cassandra:latest  
   
-  Création d'une base de données (keyspace dans Cassandra) :    
+  #### Création d'une base de données (keyspace dans Cassandra) :    
   CREATE KEYSPACE IF NOT EXISTS Movies
   WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor': 3 };
 
-  Avec CQLSH :  
+  #### Avec CQLSH :  
   cqlsh > DESCRIBE keyspaces;  
   cqlsh > DESCRIBE KEYSPACE Movies;  
 
   La syntaxe SQL est aussi possible.  
 
-  Create table :  
+  #### Create table :  
 
   create table artists (id text,
   last_name text, first_name text,
   birth_date int, primary key (id)
   );  
 
-  Insertion de données :  
+  #### Insertion de données :  
 
   insert into artists (id, last_name, first_name, birth_date)
   values ('artist1', 'Depardieu', 'Gérard', 1948);
@@ -98,13 +98,33 @@ docker run --name mon-cassandra -p 3000:9042  -d cassandra:latest
   insert into artists (id, last_name, first_name)
   values ('artist3', 'Marceau', 'Sophie');
 
-  Affichage  
+  #### Affichage  
   
   select * from artists;
 
 
 ### Mongo
 
-  docker run –name mon-mongo -p 30001 :27017 -d mongo
+  docker run --name mon-mongo -p 30001:27017 -d mongo  
 
+  #### Se placer sur une base:  
+  use <nombase>  
+  
+  #### Créer une table (collection):  
+  db.createCollection("movies")  
+
+  #### Voir les tables:  
+  show collections
+
+  #### Insérer un document JSON dans une collection
+  db.movies.insert ({"nom": "nfe024"})
+
+  #### Afficher le contenu d'une collection
+  db.movies.find()
+
+  #### Comptez le nombre de points dans une collection
+  db.movies.count()
+
+  #### Supprimez une collection
+  db.movies.drop()
 
